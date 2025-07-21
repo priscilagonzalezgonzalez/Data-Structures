@@ -37,6 +37,6 @@ void Node<T>::setNext(Node<T> *p) {
 }
 
 template <typename T>
-const T &Node<T>::getData() const {
+const T &Node<T>::getData() const{
     return this->data;
 }
