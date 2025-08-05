@@ -6,20 +6,33 @@
 
 template <typename T>
 class SinglyLinkedList {
-    private:
-        Node<T>* head; 
-        std::size_t size;
+private:
+    Node<T>* head; 
+    std::size_t size;
 
-    public:
-        SinglyLinkedList() : head(nullptr), size(0) {};
+public:
+    SinglyLinkedList() : head(nullptr), size(0) {};
+    ~SinglyLinkedList();
 
-        const std::size_t getSize();
+    const std::size_t getSize();
 
-        void insert(const T &e, std::size_t pos = 0);
-        void eliminate(std::size_t pos = 0);
+    void insert(const T &e, std::size_t pos = 0);
+    void eliminate(std::size_t pos = 0);
 };
 
-template<typename T>
+template <typename T>
+inline SinglyLinkedList<T>::~SinglyLinkedList()
+{
+    Node<T>* aux = head;
+    while (aux != nullptr)
+    {
+        Node<T>* toDeleteNode = aux;
+        aux = aux->getNext();
+        delete toDeleteNode;
+    }
+}
+
+template <typename T>
 inline const std::size_t SinglyLinkedList<T>::getSize()
 {
     return this->size;
