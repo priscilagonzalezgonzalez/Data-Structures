@@ -12,8 +12,11 @@ private:
     float loadFactor;
     int resizeThreshold;
 
-    T* array;
-    size_t* hashTable;
+    // Array of pairs where:
+    // - first: bool indicating if the slot is occupied (true) or empty (false)
+    // - second: a pair containing the key (Hash) and the value (T)
+    std::pair<bool, std::pair<Hash, T>>* array;
+
 
     void rehash(size_t newSize);
     void hashFunction(Hash key);
